@@ -43,6 +43,7 @@ void phase_raw(uint16_t p)
 
 void phase_set(uint16_t p)
 {
+    p = 360 - (p % 360);
     phase = ((((p + PHASECAL_OFFSET)<<4) + 45)/90) & 0x3F; // approximate 6.25 degree steps with integers, offset center
     
     phase_raw(phase);
