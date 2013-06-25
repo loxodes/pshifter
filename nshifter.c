@@ -16,7 +16,7 @@
 #include "intmacro.h"
 #include "rs485.h"
 #include "phase.h"
-
+#include "pshifter_config.h"
 
 #define PSHIFTER_VER 2
 

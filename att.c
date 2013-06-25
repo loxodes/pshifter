@@ -7,6 +7,7 @@
 #include "spi.h"
 #include "delay.h"
 #include "att.h"
+#include "pshifter_config.h"
 
 uint8_t att_level;
 
@@ -24,7 +25,7 @@ void att_clear()
 
 void att_set(uint8_t level)
 {
-    uint16_t w = ((0) << ATT_ADDR_BASE) | (level & 0xFF);
+    uint16_t w = AMPCAL_OFFSET + (((0) << ATT_ADDR_BASE) | (level & 0xFF));
     att_level = level;
     att_send(w);
 }

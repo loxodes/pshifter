@@ -1,5 +1,3 @@
-#define BOARD_ADDR 'f'
-
 void init_msp(void);
 void init_gpio(void);
 void init_leds(void);

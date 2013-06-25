@@ -9,7 +9,7 @@
 #include "spi.h"
 #include "att.h"
 #include "phase.h"
-#include "pshifter_cal.h"
+#include "pshifter_config.h"
 
 uint16_t phase;
 
@@ -43,10 +43,9 @@ void phase_raw(uint16_t p)
 
 void phase_set(uint16_t p)
 {
-    phase = (((p<<4) + 45)/90) & 0x3F; // approximate 6.25 degree steps with integers, offset center
+    phase = ((((p + PHASECAL_OFFSET)<<4) + 45)/90) & 0x3F; // approximate 6.25 degree steps with integers, offset center
     
     phase_raw(phase);
-    // att_set(att_table[phase]);
     delay_us(10);
 }
 
