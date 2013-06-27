@@ -127,6 +127,10 @@ void process_message(message *msg)
             msg->re_len = 0;
             att_set(msg->payload & ATT_LEVELMASK); 
             break;
+        case CMD_ATT_SET_RAW:
+            msg->re_len = 0;
+            att_set_raw(msg->payload & ATT_LEVELMASK); 
+            break;
         case CMD_PHASE_READ:
             msg->re_len = 2;
             msg->payload = phase_get();
@@ -134,6 +138,10 @@ void process_message(message *msg)
         case CMD_PHASE_SET:
             msg->re_len = 0;
             phase_set(msg->payload);
+            break;
+        case CMD_PHASE_SET_RAW:
+            msg->re_len = 0;
+            phase_raw(msg->payload);
             break;
         case CMD_MODE_READ: // COMMAND UNIMPLEMENTED
             msg->re_len = 2;

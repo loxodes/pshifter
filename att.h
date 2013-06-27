@@ -1,6 +1,7 @@
 void init_att(void);
 void att_clear(void);
 void att_set(uint8_t level);
+void att_set_raw(uint8_t level);
 void att_send(uint16_t w);
 uint8_t att_get(void);
 

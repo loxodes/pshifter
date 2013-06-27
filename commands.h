@@ -62,6 +62,16 @@
 // send [STX] [CMD_ATT_SET] [2] [VAL (16 bit)] [ETX]
 // get [ACK] [CMD] [0] [ETX]
 
+#define CMD_PHASE_SET_RAW 0xDA
+// PHASE_SET_RAW sets the phase shifter register value directly
+// send [STX] [CMD_ATT_SET] [2] [VAL (16 bit)] [ETX]
+// get [ACK] [CMD] [0] [ETX]
+
+#define CMD_ATT_SET_RAW 0xDB
+// ATT_SET sets the value of a attenuator register directly, bypassing calibration
+// send [STX] [CMD_ATT_SET]  [2] [VAL (16 bit)] [ETX]
+// get [ACK] [CMD] [0] [ETX]
+
 #define CMD_MODE_READ 0xDC
 // PHASE_READ reads the device mode (TX/RX/NA)
 // send [STX] [CMD_MODE_READ] [0] [ETX]

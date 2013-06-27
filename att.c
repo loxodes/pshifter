@@ -30,6 +30,14 @@ void att_set(uint8_t level)
     att_send(w);
 }
 
+void att_set_raw(uint8_t level)
+{
+    uint16_t w = (((0) << ATT_ADDR_BASE) | (level & 0xFF));
+    att_level = level;
+    att_send(w);
+
+}
+
 uint8_t att_get(void)
 {
     return att_level;
@@ -39,8 +47,10 @@ void att_send(uint16_t w)
 {
     spi_msb(LAST);
     ATTOUT &= ~(ATT_LE);
+    delay_us(1);
     spi_exchange(w & 0xFF);
     spi_exchange((w >> 8) & 0xFF);
+    delay_us(40);
     ATTOUT |= ATT_LE;
     delay_us(20);
     ATTOUT &= ~(ATT_LE);
