@@ -12,6 +12,7 @@
 #include "pshifter_config.h"
 
 uint16_t phase;
+const uint8_t phase2phasereg[360] = PHASE_CALTABLE;
 
 void init_phase(void)
 {
@@ -43,11 +44,12 @@ void phase_raw(uint16_t p)
 
 void phase_set(uint16_t p)
 {
-    p = 360 - (p % 360);
-    phase = ((((p + PHASECAL_OFFSET)<<4) + 45)/90) & 0x3F; // approximate 6.25 degree steps with integers, offset center
-    
+//    p = 360 - (p % 360);
+//    phase = ((((p + PHASECAL_OFFSET)<<4) + 45)/90) & 0x3F; // approximate 5.6 degree steps with integers, offset center
+    phase = phase2phasereg[p % 360];
     phase_raw(phase);
     delay_us(10);
+    att_flatten(phase);
 }
 
 uint16_t phase_get(void)
