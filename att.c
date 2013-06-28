@@ -10,6 +10,7 @@
 #include "pshifter_config.h"
 
 uint8_t att_level;
+const uint8_t preg2attreg[64] = ATT_CALTABLE;
 
 void init_att()
 {
@@ -25,19 +26,21 @@ void att_clear()
 
 void att_set(uint8_t level)
 {
-    uint16_t w = AMPCAL_OFFSET + (((0) << ATT_ADDR_BASE) | (level & 0xFF));
     att_level = level;
-    att_send(w);
+    att_set_raw(level);
 }
 
 void att_set_raw(uint8_t level)
 {
     uint16_t w = (((0) << ATT_ADDR_BASE) | (level & 0xFF));
-    att_level = level;
     att_send(w);
-
+    att_send(w);
 }
 
+void att_flatten(uint8_t phase)
+{
+    att_set_raw(preg2attreg[phase] + att_level);
+}
 uint8_t att_get(void)
 {
     return att_level;

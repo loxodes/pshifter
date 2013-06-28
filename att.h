@@ -3,6 +3,7 @@ void att_clear(void);
 void att_set(uint8_t level);
 void att_set_raw(uint8_t level);
 void att_send(uint16_t w);
+void att_flatten(uint8_t phase);
 uint8_t att_get(void);
 
 #define A0 (1 << 0)

@@ -18,7 +18,7 @@
 #include "phase.h"
 #include "pshifter_config.h"
 
-#define PSHIFTER_VER 2
+#define PSHIFTER_VER 3
 
 void init_msp(void)
 {
